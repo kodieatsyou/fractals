@@ -5,6 +5,12 @@ import draw.StdDraw;
 
 public class KochCurve {
 
-	// TODO: implement
+	public KochCurve() {
+		
+	}
 	
-}
+	public void koch() {
+		
+	}
+	
+}j

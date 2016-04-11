@@ -1,21 +1,23 @@
 package part3;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
+import draw.UltraDraw;
 
-import draw.StdDraw;
 
-
-public class HTree {
+public class HTree implements KeyListener {
 	public static void main(String[] args) {
 		HTree htree = new HTree();
-		htree.draw(4);
+		htree.draw(1);
 	}
 
 	public HTree() {
-		StdDraw.setXscale(0, 150);
-		StdDraw.setYscale(0, 150);
-		StdDraw.clear(StdDraw.GRAY);
-		StdDraw.setPenColor(StdDraw.WHITE);
+		UltraDraw.addKeyListener(this);
+		UltraDraw.setXscale(0, 150);
+		UltraDraw.setYscale(0, 150);
+		UltraDraw.clear(UltraDraw.GRAY);
+		UltraDraw.setPenColor(UltraDraw.WHITE);
 	}
 	
 	public void draw(int n) {
@@ -38,6 +40,29 @@ public class HTree {
 		tree(h.getTopLeft(), radius / 2, n - 1);
 		tree(h.getBottomRight(), radius / 2, n - 1);
 		tree(h.getBottomLeft(), radius / 2, n - 1);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		char keychar = e.getKeyChar();
+		if(Character.getNumericValue(keychar) <= 6) {
+			UltraDraw.clear(UltraDraw.GRAY);
+			draw(Character.getNumericValue(keychar));
+		} else {
+			return;
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		System.out.println(e);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		System.out.println(e);
+		
 	}
 	
 }
